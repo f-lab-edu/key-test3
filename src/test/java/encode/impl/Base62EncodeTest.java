@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class Base62EncodeTest {
 
   @Test
-  @DisplayName("base62 인코딩 테스트")
+  @DisplayName("Hello World!을 입력하면 T8dgcjRGkZ3aysdN를 반환한다.")
   void base62Test() {
     Base62Encode base62 = new Base62Encode();
     String encode62 = base62.encode("Hello World!");

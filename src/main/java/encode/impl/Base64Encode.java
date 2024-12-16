@@ -76,28 +76,36 @@ public class Base64Encode implements Encode {
     return sb.toString();
   }
 
-  public List<String> splitInto6bit(String binaryStream) {
+  private List<String> splitInto6bit(String binaryStream) {
 
-    char[] charArr = binaryStream.toCharArray();
     List<String> arr = new ArrayList<>();
+    int binaryStrLength = binaryStream.length();
+    int remainder = binaryStrLength % LENGTH_6_BIT;
+    int loopCount = binaryStrLength - remainder;
 
-    for (int i = 0; i < charArr.length; i = i + LENGTH_6_BIT) {
-      StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < loopCount; i += LENGTH_6_BIT) {
+      arr.add(binaryStream.substring(i, i + LENGTH_6_BIT));
+    }
 
-      for (int j = i; j < i + LENGTH_6_BIT && j < charArr.length; j++) {
-        sb.append(charArr[j]);
+    if (isRequiredPadFor6bits(remainder)) {
+      StringBuilder sb = new StringBuilder(binaryStream.substring(loopCount, binaryStrLength));
+      for (int i = 0; i < LENGTH_6_BIT - remainder; i++) {
+        sb.append("0");
       }
-
       arr.add(sb.toString());
     }
 
     return arr;
   }
 
+  private boolean isRequiredPadFor6bits(int remainder) {
+    return remainder != 0;
+  }
+
   /**
    * 2진수 -> 64진수
    */
-  public String binaryToBase64(List<String> list) {
+  private String binaryToBase64(List<String> list) {
 
     StringBuilder sb = new StringBuilder();
 

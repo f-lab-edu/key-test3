@@ -78,7 +78,7 @@ public class Base62Encode implements Encode {
   /**
    * 2진수 -> 10진수 변환
    */
-  public BigInteger binaryToDecimal(String str) {
+  private BigInteger binaryToDecimal(String str) {
 
     final BigInteger base = new BigInteger("2"); //밑수
 
@@ -99,7 +99,7 @@ public class Base62Encode implements Encode {
   /**
    * 10진수 -> 62진수 변환
    */
-  public String decimalToBase62(BigInteger bigInteger) {
+  private String decimalToBase62(BigInteger bigInteger) {
     BigInteger decimal = bigInteger;
 
     StringBuilder sb = new StringBuilder();
