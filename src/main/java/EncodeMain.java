@@ -14,7 +14,7 @@ public class EncodeMain {
     input = sc.nextLine();
 
     // null 또는 빈 칸이 입력되면 사용자가 다시 입력을 유도하도록 flow를 만들자.
-    while (input == null && input.trim().isEmpty()) {
+    while (input == null || input.isEmpty()) {
       System.out.println("빈 값이 입력되었습니다.문자열을 입력해주세요!!(종료를 원하시면 exit)");
       input = sc.nextLine();
 
